@@ -21,7 +21,6 @@ router.get("/home/find-by-user", async (req, res) => {
     const { username, page = 1 } = req.query;
     const pageSize = 50;
     const skip = (page - 1) * pageSize;
-    // console.log(username);
     try {
         const userHomeRelationRepository = AppDataSource.getRepository(UserHomeRelation);
         const homes = await userHomeRelationRepository
@@ -45,8 +44,6 @@ router.get("/home/find-by-user", async (req, res) => {
 router.get('/home/:street_address', async (req, res) => {
     try {
         const { street_address } = req.params;
-        // console.log(street_address);
-
         const userHomeRelationRepository = AppDataSource.getRepository(UserHomeRelation);
 
         const users = await userHomeRelationRepository
@@ -69,11 +66,9 @@ router.get('/home/:street_address', async (req, res) => {
 
 router.post('/home/edituser', async (req, res) => {
     const { username, email, street_address } = req.body;
-    // console.log(req.body);
     if (!username || !email || !street_address) {
         return res.status(400).json({ error: "Username, email, and street address are required" });
     }
-
     const queryRunner = AppDataSource.createQueryRunner();
 
     try {
@@ -143,24 +138,16 @@ router.post('/home/assign-users-to-home', async (req, res) => {
         if (!home) {
             throw new Error(`Home not found for street address: ${street_address}`);
         }
-
-        // console.log({ "test home": home });
         for (const userId of userIds) {
             // Check if the user exists
             const user = await queryRunner.manager.findOne(User, { where: { username: userId } });
             if (!user) {
                 throw new Error(`User not found for userId: ${userId}`);
             }
-            // console.log({ "test user log": user });
-
             // Check if the user is already associated with the home in user_home_relation
             const existingRelation = await queryRunner.manager.findOne(UserHomeRelation, {
                 where: { user: user, home: home }
             });
-
-            // console.log({ "relation" : existingRelation });
-
-            // if (!existingRelation) {
 
                 if (existingRelation) {
                     // Update the existing relation if found
@@ -182,7 +169,6 @@ router.post('/home/assign-users-to-home', async (req, res) => {
                         })
                         .execute();
                 }
-            // }
         }
 
         await queryRunner.commitTransaction();
