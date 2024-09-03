@@ -97,8 +97,8 @@ Ensure you have Node.js and npm installed on your machine. You will also need a 
 ### Installation1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/divyendhsuresh/full_stack_assessment_skeleton.git
-cd full_stack_assessment_skeleton/frontend
+ git clone https://github.com/divyendhsuresh/full_stack_assessment_skeleton.git
+ cd full_stack_assessment_skeleton/backend
 ```
 
 - Install dependencies:
@@ -114,7 +114,12 @@ cd full_stack_assessment_skeleton/frontend
   npm start: Starts the application with Nodemon.
 
 - Dependencies
+
   > Express: Fast, unopinionated, minimalist web framework for Node.js.
   > TypeORM: ORM for TypeScript and JavaScript (ES7, ES6, ES5).
   > Nodemon: A tool that helps develop Node.js applications by automatically restarting the node application when file changes in the directory are detected.
   > Cors: Middleware for enabling Cross-Origin Resource Sharing (CORS).
+
+- screen record
+
+- [watch the video for reference](https://drive.google.com/file/d/1ZqEiis2Jw7CBCRG0X12FJC-wQo4h5BU8/view?usp=drive_link)
